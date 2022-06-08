@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spacy-deployment
+  labels:
+    app: spacy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spacy
+  template:
+    metadata:
+      labels:
+        app: spacy
+    spec:
+      containers:
+      - name: spacy
+        image: gcr.io/norwegian-language-bank/spacy:d9a22f4d-467b-4d3b-b8f8-01b18c9a5ca7
+        command: [ "/bin/bash" ]
+        args: [ "-c", "streamlit run pos.py --server.port 8501 --server.baseUrlPath /spacy --browser.gatherUsageStats=False"]
+        ports:
+        - containerPort: 8501
+        resources:
+          limits:
+            cpu: 250m
+            ephemeral-storage: 256Mi
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            ephemeral-storage: 256Mi
+            memory: 512Mi
