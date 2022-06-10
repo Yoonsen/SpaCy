@@ -37,4 +37,4 @@ st.write(res.sort_values(by="Frekvens", ascending=False))
 
 
 st.markdown("Analyse")
-st.write(pd.DataFrame([(x.text,x.lemma_, x.pos_, x.dep_) for x in analyze]))
+st.write(pd.DataFrame([(x.text,x.lemma_, x.pos_, x.dep_) for x in analyze], columns=["Ord", "Stamme", "Kategori", "Relasjon"]))
