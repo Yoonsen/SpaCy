@@ -34,3 +34,7 @@ res.columns = ["Frekvens"]
 res['Prosent'] = res.Frekvens*100/res.Frekvens.sum()
 
 st.write(res.sort_values(by="Frekvens", ascending=False))
+
+
+st.markdown("Analyse")
+st.write(pd.DataFrame([(x.text,x.lemma_, x.pos_, x.dep_) for x in analyze]))
